@@ -1,95 +1,97 @@
-import { StyleSheet, Text, View ,Button,Image, ImageBackground} from 'react-native'
-import React from 'react'
-import { TouchableOpacity } from 'react-native-web'
+import { StyleSheet, Text, View,Image,TouchableOpacity,}from 'react-native'
+import { useState } from 'react'
+import { isEnabled } from 'react-native/Libraries/Performance/Systrace';
+ const App=() => {
 
-const App = () => {
+ const[enable,setenable,]=useState(false)
+ 
+ const onclickMe=() => {
+ console.log(enable,'clicked');
+  setenable(!enable);
+}
   return (
-  <View style={{
-     flex:1,
-    background:'yellow',
-
- 
-
- }}>
-   <View style={{
-    flex:2,
-    background:'blue',
-   
- }}>
- <View style={{
-  height:50,
-  width:50,
-  backgroundColor:'white',
-  borderRadius:25,
-  marginTop:5,
-  marginLeft:500,
- }}>
-    <Image style={{
-      height:35,
-      width:35,
-      marginTop:9,
-      marginLeft:9
-    }} source={require('./assets/Hat.png')}/>   
- </View>
-  <Text style={{
-    color:'white',
-    fontWeight:'bold',            
-    fontSize:40,
-    marginLeft:500,           
-  }}>Food for</Text>
-
-  <Text style={{
-    color:'white',
-    fontWeight:'bold',
-    fontSize:40,
-    marginLeft:500,   
-    }}>Everyone</Text>
- </View>
-
-  <View style={{
-    flex:2,
-    background:'red'
-  }}>
-  <Image style={{ 
-   height:255,
-   width:235,
-   marginTop:2,
-   marginLeft:500,
-  }}  
-
- 
-   source={require('./assets/people.png')}/>  
-  </View>
-
-  <View style={{
-    flex:1,
-    background:'red',
+    <View style={{
+      flex:1,
+      backgroundColor:enable? 'orange':'grey',
     }}>
-    <TouchableOpacity style={{
-      backgroundColor:'white',
-      height:40,
-      width:250,
-      borderRadius:50,
-      marginLeft:500,
-      marginTop:60,
-      justifyContent:'center',
-      alignCenter:'Text'
-    }}> <Text style={{
-      color:'red',
-      fontSize:18,
+    <Text style={{
+      fontSize:35,
+      color:'white',
+      marginTop:36,
       fontWeight:'bold',
-      marginLeft:75
-      
-    }}>Get started</Text>
-      
-    </TouchableOpacity> 
-    
-    
-    
-  
-  </View>
+      textAlign:'center'
+    }}>Bedroom</Text>
 
-  </View>
+    <view style={{
+      height:2,
+      width:530,
+      marginTop:2,
+      backgroundColor:'white'
+    }}></view>
+
+    <view style={{
+      height:2,
+      width:520,
+      marginTop:2,
+      marginLeft:700,
+      backgroundColor:'white'
+    }}></view>
+
+    <Text style={{
+      fontSize:36,
+      color:'white',
+      marginBottom:6,
+      fontWeight:'bold',
+      textAlign:'center'
+    }}>Lights</Text>
+
+    <Image style={{
+      height:180,
+      width:200,
+      marginTop:65,
+      alignSelf:'center'
+      }} 
+      resizeMode="contain"
+     source={enable ? require('./assets/30535-2-idea-bulb-clipart-thumb.png'):require('./assets/13444.png')}/>
+
+    <TouchableOpacity 
+     onPress={
+      ()=> {
+        onclickMe();
+      }
+    }
+    style={{
+      height:50,
+      width:130,
+      borderRadius:55,
+      marginLeft:480,
+      marginTop:100,
+      backgroundColor:enable?'yellow':'black',
+    
+     }}>
+    <Text style={{
+      fontSize:25,
+      color:'white',
+      alignItems:'center',
+      textAlign:'left',
+      marginLeft:4,
+      marginTop:4,
+    }}>
+    {enable ? 'ON' : 'OFF'} 
+    </Text>
+    <View style={{
+      height:48,
+      width:48,
+      borderRadius:48/2,
+      backgroundColor:'white',
+      position:'absolute',
+      marginBottom:4,
+      marginLeft:81
+    }}></View>
+    
+    </TouchableOpacity>
+
+    </View>
   )
 }
 
